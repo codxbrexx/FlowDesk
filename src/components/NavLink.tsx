@@ -1,11 +1,28 @@
-import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
+import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
 
-type Props = PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }>
-
-export default function NavLink({ href, children, ...rest }: Props) {
-  return (
-    <a href={href} {...rest} className="ui-navlink text-blue-600 hover:underline">
-      {children}
-    </a>
-  )
+interface NavLinkCompatProps extends Omit<NavLinkProps, "className"> {
+  className?: string;
+  activeClassName?: string;
+  pendingClassName?: string;
 }
+
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
+  ({ className, activeClassName, pendingClassName, to, ...props }, ref) => {
+    return (
+      <RouterNavLink
+        ref={ref}
+        to={to}
+        className={({ isActive, isPending }) =>
+          cn(className, isActive && activeClassName, isPending && pendingClassName)
+        }
+        {...props}
+      />
+    );
+  },
+);
+
+NavLink.displayName = "NavLink";
+
+export { NavLink };
