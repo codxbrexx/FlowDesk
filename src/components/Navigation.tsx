@@ -16,9 +16,9 @@ export const Navigation = () => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="text-2xl font-bold text-white">W</span>
+            <span className="text-2xl font-bold text-white">F</span>
           </div>
-          <h1 className="text-2xl font-bold neon-text hidden sm:block">Workify</h1>
+          <h1 className="text-2xl font-bold neon-text hidden sm:block">FlowDesk</h1>
         </div>
 
         <div className="flex gap-1 md:gap-2">
